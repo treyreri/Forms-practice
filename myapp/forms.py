@@ -44,3 +44,11 @@ class ContactForm(forms.Form):
         if name and subject and name.lower() == subject.lower():
             raise forms.ValidationError("Name and subject cannot be the same")
         return cleaned_data #clean используется для проверки, которая зависит от нескольких полей
+
+
+#создаем бук форм
+from .models import Book
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title' , 'author', 'price']
