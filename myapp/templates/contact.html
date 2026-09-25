@@ -9,12 +9,30 @@
     <h1>Contact form</h1>
     <form method="post">
         {% csrf_token %}
-        {{ form.non_field_errors }}
+        {{ form.non_field_errors }} #non_field_errors используется для вывода проблем, затрагивающих форму в целом. Например, если пользователь заполняет поля «Пароль» и «Повторите пароль», и они не совпадают — ошибка относится ко всей форме, а не к одному конкретному полю
 
         <p>
             {{form.name.label}}
             {{ form.name }}
             {{ form.name.errors }}
+        </p>
+
+        <p>
+            {{form.email_label}}
+            {{form.email}}
+            {{form.email.errors}}
+        </p>
+
+        <p>
+            {{form.subject.label}}
+            {{form.subject}}
+            {{form.subject.errors}}
+        </p>
+
+        <p>
+            {{form.message.label}}
+            {{form.message}}
+            {{form.message.error}}
         </p>
 
         <button type="submit">Send</button>

@@ -1,9 +1,30 @@
 from django import forms
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100, min_length=2 , required=True, label = 'Name' , help_text="Enter your name")
-    email = forms.EmailField(required=True, label = "Email")
-    message = forms.CharField(widget=forms.Textarea, required=True, label="Message")
+    name = forms.CharField(
+        max_length=100, min_length=2, required=True, label="Name", widget=forms.TextInput(
+            attrs={ #использование widget.attrs для добавления CSS-классов и placeholder
+                'class' : 'form-control' ,
+                'placeholder' : 'Your name' }))
+
+    email = forms.EmailField(
+        required=True, label="Email" , widget=forms.EmailInput(
+            attrs={
+                'class' : 'form-control' ,
+                'placeholder' : 'Your email' }))
+
+    subject = forms.CharField(
+            max_length=100, required=True, widget=forms.TextInput(
+                attrs={
+                    'class' : 'form-control' ,
+                    'placeholder' : 'Subject' }))
+
+    message = forms.CharField(
+            widget = forms.Textarea(
+                attrs={
+                    'class' : 'form-control' ,
+                    'placeholder' : 'Your message' }) , required=True, label="Message")
+    
 
     subject = forms.CharField(max_length=100, required=True)
 
